@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mail.mail_feeds_main" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0,[ref('hr_factory.group_hidden'),])]"/>
+        </record>
+        
+        <menuitem id="menu_gz_config_employee" name="员工" parent="piece_rate.menu_gz_config" sequence="2"/>
+
+        <record id="hr.open_module_tree_department" model="ir.actions.act_window">
+            <field name="help">单击创建车间信息</field>
+        </record>
+        <menuitem name="车间" action="hr.open_module_tree_department" id="menu_gz_config_employee_department_tree" parent="menu_gz_config_employee" sequence="1"/>
+
+        <record id="view_employee_form" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//label[@for='name']" position="before">
+                    <label for="emp_id" class="oe_edit_only"/>
+                    <h1>
+                        <field name="emp_id"/>
+                    </h1>
+                </xpath>
+
+                <xpath expr="//label[@for='category_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='category_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//label[@for='work_email']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='work_email']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//label[@for='work_phone']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='work_phone']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//page[@string='Public Information']" position="replace">
+                    <page string="岗位信息">
+                        <group>
+                            <group>
+                                <field name="department_id" on_change="onchange_department_id(department_id)"/>
+                                <field name="procedure"/>
+                            </group>
+                            <group>
+                                <field name="parent_id"/>
+                                <field name="coach_id"/>
+                            </group>
+                        </group>
+                        <field name="notes" placeholder="Other Information ..." colspan="4"/>
+                    </page>
+                </xpath>
+
+                <xpath expr="//field[@name='country_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='passport_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                
+                <xpath expr="//page[@string='HR Settings']" position="replace">
+                    <page string="HR Settings" groups="base.group_hr_user">
+                        <group>
+                            <group string="Active" name="active_group">
+                                <field name="active"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="entry_day"/>
+                            </group>
+                            <group>
+                                <field name="quit_day"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="hr_kanban_view_employees">
+            <field name="name">HR - Employess Kanban</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_employee_vignette']" position="replace">
+                    <div class="oe_employee_vignette">
+                        <div class="oe_employee_image">
+                            <a type="open"><img t-att-src="kanban_image('hr.employee', 'image_medium', record.id.value)" class="oe_employee_picture"/></a>
+                        </div>
+                        <div class="oe_employee_details">
+                            <h4>
+                                <a type="open"><field name="emp_id"/> <field name="name"/><t t-if="record.login.raw_value"> (<field name="login"/>)</t></a>
+                            </h4>
+                            <ul>
+                                <li t-if="record.department_id.raw_value">车间：<field name="department_id"/></li>
+                                <li t-if="record.procedure.raw_value">工序：<field name="procedure"/></li>
+                            </ul>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="gz_view_employee_list" model="ir.actions.act_window">
+            <field name="name">员工</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('user_id','=',False)]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" ref="hr.view_employee_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                单击创建一个新员工。
+              </p>
+            </field>
+        </record>
+        <menuitem name="员工" action="gz_view_employee_list" id="menu_gz_config_employee_tree" sequence="2" parent="menu_gz_config_employee"/>
+        
+        <record id="hr.menu_hr_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0,[ref('hr_factory.group_hidden'),])]"/>
+        </record>
+    </data>
+</openerp>
+    

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Top menu item -->
+        <menuitem name="基表维护"
+            id="menu_gz_config"
+            sequence="60"/>
+        
+        <menuitem id="menu_gz_config_piece_rate" name="工价" parent="menu_gz_config" sequence="1"/>
+        
+        <!-- Work Procedure Tree View -->
+        <record model="ir.ui.view" id="view_work_procedure_tree">
+            <field name="name">work.procedure.tree</field>
+            <field name="model">work.procedure</field>
+            <field name="arch" type="xml">
+              <tree string="" editable="bottom">
+                  <field name="name"/>
+              </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_work_procedure">
+            <field name="name">工序</field>
+            <field name="res_model">work.procedure</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_work_procedure_tree"/>
+        </record>
+        <menuitem name="工序" parent="menu_gz_config_piece_rate" id="menu_gz_config_work_procedure" action="action_work_procedure" sequence="1"/>
+
+        <!-- Style No Form View -->
+        <record model="ir.ui.view" id="view_style_no_form">
+            <field name="name">style.no.form</field>
+            <field name="model">style.no</field>
+            <field name="arch" type="xml">
+                <form string="Style No">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <notebook>
+                            <page string="工价">
+                                <field name="rate_ids">
+                                    <tree string="material_details" editable="bottom">
+                                        <field name="procedure"/>
+                                        <field name="rate"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- Style No Tree View -->
+        <record model="ir.ui.view" id="view_style_no_tree">
+            <field name="name">style.no.tree</field>
+            <field name="model">style.no</field>
+            <field name="arch" type="xml">
+              <tree string="">
+                  <field name="name"/>
+              </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_style_no">
+            <field name="name">款号</field>
+            <field name="res_model">style.no</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_style_no_tree"/>
+        </record>
+        <menuitem name="款号" parent="menu_gz_config_piece_rate" id="menu_gz_config_style_no" action="action_style_no" sequence="2"/>
+        
+        <!-- Piece Rate Search View -->
+        <record model="ir.ui.view" id="view_piece_rate_search">
+            <field name="name">piece.rate.search</field>
+            <field name="model">piece.rate</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="style_id" string="款号"/>
+                    <field name="procedure" string="工序"/>
+                    <filter name="group_style_id" string="款号" icon="terp-partner" context="{'group_by':'style_id'}"/>
+                    <filter name="group_procedure_id" string="工序" icon="terp-partner" context="{'group_by':'procedure'}"/>
+                </search>
+            </field>
+        </record>
+        <!-- Piece Rate Tree View -->
+        <record model="ir.ui.view" id="view_piece_rate_tree">
+            <field name="name">piece.rate.tree</field>
+            <field name="model">piece.rate</field>
+            <field name="arch" type="xml">
+              <tree string="" editable="bottom" create="false" edit="false">
+                  <field name="style_id"/>
+                  <field name="procedure"/>
+                  <field name="rate"/>
+              </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_piece_rate">
+            <field name="name">工价</field>
+            <field name="res_model">piece.rate</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_piece_rate_tree"/>
+            <field name="search_view_id" ref="view_piece_rate_search"/>
+            <field name="context">{'search_default_group_style_id': 1}</field>
+        </record>
+        <menuitem name="工价" parent="menu_gz_config_piece_rate" id="menu_gz_config_piece_rate2" action="action_piece_rate" sequence="3"/>
+    </data>
+</openerp>
+    
