@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <record id="product_uom_box" model="product.uom">
+        <field name="category_id" ref="product.product_uom_categ_vol"/>
+        <field name="name">箱</field>
+        <field name="factor">1.0</field>
+    </record>
+    
+    <record id="prod_cat_service" model="product.category">
+      <field name="name">加工</field>
+      <field name="type">normal</field>
+    </record>
+
+    <delete model="product.product" id="product.product_product_consultant"/>
+    <record id="product.product_product_consultant" model="product.product">
+        <field name="list_price">75.0</field>
+        <field name="standard_price">30.0</field>
+        <field name="uom_id" ref="product.product_uom_hour"/>
+        <field name="uom_po_id" ref="product.product_uom_hour"/>
+        <field name="name">Service</field>
+        <field name="categ_id" ref="prod_cat_service"/>
+        <field name="type">service</field>
+        <field name="sale_ok" eval="False"/>
+    </record>
+    <delete model="product.category" id="product.product_category_1"/>
+    <delete model="product.category" id="product.product_category_all"/>
+
+    <record id="prod_cat_leathercutting" model="product.category">
+      <field name="name">裁皮</field>
+      <field name="parent_id" ref="prod_cat_service"/>
+      <field name="type">normal</field>
+    </record>
+    <record id="prod_cat_sewing" model="product.category">
+      <field name="name">缝纫</field>
+      <field name="parent_id" ref="prod_cat_service"/>
+      <field name="type">normal</field>
+    </record>
+    <record id="prod_cat_auxiliary" model="product.category">
+      <field name="name">辅工</field>
+      <field name="parent_id" ref="prod_cat_service"/>
+      <field name="type">normal</field>
+    </record>
+    <record id="prod_cat_inspect" model="product.category">
+      <field name="name">检验</field>
+      <field name="parent_id" ref="prod_cat_service"/>
+      <field name="type">normal</field>
+    </record>
+    <record id="prod_cat_cutover" model="product.category">
+      <field name="name">剪翻</field>
+      <field name="parent_id" ref="prod_cat_service"/>
+      <field name="type">normal</field>
+    </record>
+    <record id="prod_cat_pattersewingmachine" model="product.category">
+      <field name="name">花样机</field>
+      <field name="parent_id" ref="prod_cat_service"/>
+      <field name="type">normal</field>
+    </record>
+    <record id="prod_cat_pack" model="product.category">
+      <field name="name">包装</field>
+      <field name="parent_id" ref="prod_cat_service"/>
+      <field name="type">normal</field>
+    </record>
+  </data>
+</openerp>

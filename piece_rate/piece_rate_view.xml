@@ -8,13 +8,76 @@
         
         <menuitem id="menu_gz_config_piece_rate" name="工价" parent="menu_gz_config" sequence="1"/>
         
+        <menuitem id="menu_gz_config_config_main" name="设置" parent="menu_gz_config" sequence="70"/>
+        <menuitem id="menu_gz_config_piece_rate_config_main" name="工价" parent="menu_gz_config_config_main" sequence="1"/>
+        
+        <menuitem action="product.product_category_action_form" name="工序分类"
+            id="menu_gz_config_piece_rate_category" parent="menu_gz_config_piece_rate_config_main" sequence="1"/>
+        <menuitem action="product.product_uom_categ_form_action" name="计量单位类别"
+            id="menu_gz_config_piece_rate_uom_categ" parent="menu_gz_config_piece_rate_config_main" sequence="2"/>
+        <menuitem action="product.product_uom_form_action" name="计量单位"
+            id="menu_gz_config_piece_rate_uom" parent="menu_gz_config_piece_rate_config_main" sequence="3"/>
+        
+        <!-- Work Procedure Tree View -->
+        <record id="work_procedure_form_view" model="ir.ui.view">
+            <field name="name">work.procedure.form</field>
+            <field name="model">work.procedure</field>
+            <field name="arch" type="xml">
+                <form string="Procedure">
+                    <sheet>
+                        <div class="oe_right oe_button_box" style="width: 300px;" name="buttons">
+                        </div>
+                        <div class="oe_left" style="width: 500px;">
+                            <div class="oe_title" style="width: 390px;">
+                                <label class="oe_edit_only" for="name" string="工序名称"/>
+                                <h1><field name="name" class="oe_inline"/></h1>
+                            </div>
+                        </div>
+                        <notebook>
+                            <page string="信息">
+                                <group colspan="4">
+                                    <group>
+                                        <field name="categ_id" string="工序分类"/>
+                                        <field name="uom_id" on_change="onchange_uom(uom_id,uom_po_id)"/>
+                                        <field name="uom_po_id" invisible="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="active"/>
+                                    </group>
+                                </group>
+                                <field name="description" placeholder="描述工序特征..."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Work Procedure Search View -->
+        <record model="ir.ui.view" id="view_work_procedure_search">
+            <field name="name">work.procedure.search</field>
+            <field name="model">work.procedure</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="name" string="名称"/>
+                    <filter name="group_categ_id" string="分类" icon="terp-partner" context="{'group_by':'categ_id'}"/>
+                </search>
+            </field>
+        </record>
+
         <!-- Work Procedure Tree View -->
         <record model="ir.ui.view" id="view_work_procedure_tree">
             <field name="name">work.procedure.tree</field>
             <field name="model">work.procedure</field>
             <field name="arch" type="xml">
-              <tree string="" editable="bottom">
+              <tree string="">
                   <field name="name"/>
+                  <field name="categ_id" string="工序分类"/>
+                  <field name="uom_id"/>
               </tree>
             </field>
         </record>
@@ -22,11 +85,36 @@
             <field name="name">工序</field>
             <field name="res_model">work.procedure</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_work_procedure_search"/>
             <field name="view_id" ref="view_work_procedure_tree"/>
         </record>
-        <menuitem name="工序" parent="menu_gz_config_piece_rate" id="menu_gz_config_work_procedure" action="action_work_procedure" sequence="1"/>
+        <menuitem name="工序" parent="menu_gz_config_piece_rate" id="menu_gz_config_work_procedure" action="action_work_procedure" sequence="3"/>
 
+        <record id="style_no_kanban_view" model="ir.ui.view">
+            <field name="name">style.no.kanban</field>
+            <field name="model">style.no</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="image_small"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_vignette oe_semantic_html_override">
+                                <a type="open"><img t-att-src="kanban_image('product.template', 'image_small', record.id.value)" class="oe_kanban_image"/></a>
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open">
+                                             <field name="name"/> 
+                                        </a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        
         <!-- Style No Form View -->
         <record model="ir.ui.view" id="view_style_no_form">
             <field name="name">style.no.form</field>
@@ -34,20 +122,39 @@
             <field name="arch" type="xml">
                 <form string="Style No">
                     <sheet>
-                        <group>
-                            <field name="name"/>
-                        </group>
+                        <div class="oe_right oe_button_box" style="width: 300px;" name="buttons">
+                        </div>
+                        <div class="oe_left" style="width: 500px;">
+                            <field name="image_medium" widget="image" class="oe_avatar oe_left"/>
+                            <div class="oe_title" style="width: 390px;">
+                                <label class="oe_edit_only" for="name" string="款号名称"/>
+                                <h1><field name="name" class="oe_inline"/></h1>
+                            </div>
+                        </div>
                         <notebook>
                             <page string="工价">
                                 <field name="rate_ids">
                                     <tree string="material_details" editable="bottom">
-                                        <field name="procedure"/>
+                                        <field name="procedure_id" on_change="onchange_procedure_id(procedure_id)"/>
+                                        <field name="procedure_uom"/>
                                         <field name="rate"/>
                                     </tree>
                                 </field>
                             </page>
+                            <page string="其他">
+                                <group colspan="4">
+                                    <group>
+                                        <field name="active"/>
+                                    </group>
+                                </group>
+                                <field name="description" placeholder="描述款号特征..."/>
+                            </page>
                         </notebook>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
@@ -66,10 +173,15 @@
             <field name="name">款号</field>
             <field name="res_model">style.no</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_style_no_tree"/>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="style_no_kanban_view"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                单击创建一个新款。
+              </p>
+            </field>
         </record>
-        <menuitem name="款号" parent="menu_gz_config_piece_rate" id="menu_gz_config_style_no" action="action_style_no" sequence="2"/>
+        <menuitem name="款号" parent="menu_gz_config_piece_rate" id="menu_gz_config_style_no" action="action_style_no" sequence="4"/>
         
         <!-- Piece Rate Search View -->
         <record model="ir.ui.view" id="view_piece_rate_search">
@@ -78,12 +190,13 @@
             <field name="arch" type="xml">
                 <search string="">
                     <field name="style_id" string="款号"/>
-                    <field name="procedure" string="工序"/>
+                    <field name="procedure_id" string="工序"/>
                     <filter name="group_style_id" string="款号" icon="terp-partner" context="{'group_by':'style_id'}"/>
-                    <filter name="group_procedure_id" string="工序" icon="terp-partner" context="{'group_by':'procedure'}"/>
+                    <filter name="group_procedure_id" string="工序" icon="terp-partner" context="{'group_by':'procedure_id'}"/>
                 </search>
             </field>
         </record>
+        
         <!-- Piece Rate Tree View -->
         <record model="ir.ui.view" id="view_piece_rate_tree">
             <field name="name">piece.rate.tree</field>
@@ -91,7 +204,8 @@
             <field name="arch" type="xml">
               <tree string="" editable="bottom" create="false" edit="false">
                   <field name="style_id"/>
-                  <field name="procedure"/>
+                  <field name="procedure_id"/>
+                  <field name="procedure_uom"/>
                   <field name="rate"/>
               </tree>
             </field>
@@ -105,7 +219,7 @@
             <field name="search_view_id" ref="view_piece_rate_search"/>
             <field name="context">{'search_default_group_style_id': 1}</field>
         </record>
-        <menuitem name="工价" parent="menu_gz_config_piece_rate" id="menu_gz_config_piece_rate2" action="action_piece_rate" sequence="3"/>
+        <menuitem name="工价" parent="menu_gz_config_piece_rate" id="menu_gz_config_piece_rate2" action="action_piece_rate" sequence="5"/>
     </data>
 </openerp>
     

@@ -20,23 +20,21 @@
 ##############################################################################
 
 {
-    'name': '工价管理',
+    'name': '计件计量',
     'version': '0.1',
     'category': 'Wages',
     'description': """
-工价管理。
+计件计量。
 =======================================================================================
-工价管理。
+计件计量。
 """,
     'author': 'Wang Yue Ming',
     'website': 'http://openerp.com',
-    'depends': ['product'],
+    'depends': ['piece_rate','hr_factory','product'],
     'data': [
         #'security/sale_security.xml',
         #'security/ir.model.access.csv',
-        'prod_categs.xml',
-        'work_procedure.xml',
-        'piece_rate_view.xml',
+        'piece_work_view.xml',
     ],
     'demo': [],
     'test':[],

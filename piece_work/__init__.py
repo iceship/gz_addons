@@ -19,28 +19,4 @@
 #
 ##############################################################################
 
-{
-    'name': '工价管理',
-    'version': '0.1',
-    'category': 'Wages',
-    'description': """
-工价管理。
-=======================================================================================
-工价管理。
-""",
-    'author': 'Wang Yue Ming',
-    'website': 'http://openerp.com',
-    'depends': ['product'],
-    'data': [
-        #'security/sale_security.xml',
-        #'security/ir.model.access.csv',
-        'prod_categs.xml',
-        'work_procedure.xml',
-        'piece_rate_view.xml',
-    ],
-    'demo': [],
-    'test':[],
-    'installable': True,
-    'images': [],
-}
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+import piece_work

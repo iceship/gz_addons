@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Top menu item -->
+        <menuitem name="计量操作"
+            id="menu_gz_piece_work_root"
+            sequence="1"/>
+        
+        <menuitem id="menu_gz_piece_work_main" name="工作计量" parent="menu_gz_piece_work_root" sequence="1"/>
+        
+        <!-- Piece Rate Search View -->
+        <record model="ir.ui.view" id="view_piece_work_line_search">
+            <field name="name">piece.work.line.search</field>
+            <field name="model">piece.work.line</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="emp_id" string="员工"/>
+                </search>
+            </field>
+        </record>
+        
+        <!-- Piece Work Line Form View -->
+        <record model="ir.ui.view" id="view_style_no_form">
+            <field name="name">piece.work.line.form</field>
+            <field name="model">piece.work.line</field>
+            <field name="arch" type="xml">
+                <form string="Piece Work Line">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="emp_id" domain="[('user_id','=',False)]"/>
+                                <field name="style_id"/>
+                                <field name="rate_id"/>
+                                <field name="uom_id"/>
+                                <field name="unit_qty"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="hours"/>
+                                <field name="is_extrahours"/>
+                            </group>
+                        </group>
+                        <field name="description" placeholder="在这里输入备注..."/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- Piece Work Line Tree View -->
+        <record model="ir.ui.view" id="view_piece_work_line_tree">
+            <field name="name">piece.work.line.tree</field>
+            <field name="model">piece.work.line</field>
+            <field name="arch" type="xml">
+              <tree string="">
+                  <field name="date"/>
+                  <field name="emp_id"/>
+                  <field name="style_id"/>
+                  <field name="rate_id"/>
+                  <field name="uom_id"/>
+                  <field name="unit_qty"/>
+                  <field name="is_extrahours"/>
+              </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_piece_work_line">
+            <field name="name">工作计量</field>
+            <field name="res_model">piece.work.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_piece_work_line_tree"/>
+            <field name="search_view_id" ref="view_piece_work_line_search"/>
+        </record>
+        <menuitem name="工作计量" parent="menu_gz_piece_work_main" id="menu_gz_piece_work_line" action="action_piece_work_line" sequence="1"/>
+
+    </data>
+</openerp>
+    
