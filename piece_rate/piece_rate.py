@@ -129,7 +129,8 @@ class style_no(osv.osv):
 #----------------------------------------------------------
 class piece_rate(osv.osv):
     _name = 'piece.rate'
-
+    _rec_name = 'procedure_id'
+    
     _columns = {
         'style_id': fields.many2one('style.no', u'款号', ondelete="cascade", required=True, select=True),
         'procedure_id': fields.many2one('work.procedure', u'工序', required=True, select=True),

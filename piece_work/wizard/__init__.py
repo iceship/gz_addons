@@ -19,7 +19,4 @@
 #
 ##############################################################################
 
-import wizard
-import utils
-import piece_work
-import res_config
+import piece_work_line

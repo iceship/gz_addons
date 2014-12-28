@@ -25,23 +25,28 @@
             <field name="model">piece.work.line</field>
             <field name="arch" type="xml">
                 <form string="Piece Work Line">
-                    <sheet>
+                    <header>
+                        <button name="confirm" states="draft" string="确认"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                    </header>
+                    <group>
                         <group>
-                            <group>
-                                <field name="emp_id" domain="[('user_id','=',False)]"/>
-                                <field name="style_id"/>
-                                <field name="rate_id"/>
-                                <field name="uom_id"/>
-                                <field name="unit_qty"/>
-                            </group>
-                            <group>
-                                <field name="date"/>
-                                <field name="hours"/>
-                                <field name="is_extrahours"/>
-                            </group>
+                            <field name="type" invisible="1"/>
+                            <field name="emp_id" domain="[('user_id','=',False)]" on_change="onchange_emp_id(emp_id, style_id)"/>
+                            <field name="workline_id"/>
+                            <field name="style_id" on_change="onchange_style_id(emp_id, style_id)" attrs="{'readonly': [('lock_style', '=', True)]}"/>
+                            <field name="rate_id" on_change="onchange_rate_id(rate_id)"/>
+                            <field name="uom_id"/>
+                            <field name="unit_qty"/>
                         </group>
-                        <field name="description" placeholder="在这里输入备注..."/>
-                    </sheet>
+                        <group>
+                            <field name="date"/>
+                            <field name="hours"/>
+                            <field name="lock_style" attrs="{'readonly': [('style_id', '=', False)]}"/>
+                            <field name="is_extrahours" attrs="{'invisible': [('type', '!=', 'normal')]}"/>
+                        </group>
+                    </group>
+                    <field name="description" placeholder="在这里输入备注..."/>
                 </form>
             </field>
         </record>
@@ -51,26 +56,55 @@
             <field name="name">piece.work.line.tree</field>
             <field name="model">piece.work.line</field>
             <field name="arch" type="xml">
-              <tree string="">
+              <tree colors="blue:state == 'draft'" string="">
                   <field name="date"/>
                   <field name="emp_id"/>
                   <field name="style_id"/>
                   <field name="rate_id"/>
                   <field name="uom_id"/>
                   <field name="unit_qty"/>
+                  <field name="wage_subtotal"/>
                   <field name="is_extrahours"/>
+                  <field name="state"/>
+                  <button name="confirm" string="" states="draft" icon="gtk-apply"/>
               </tree>
             </field>
         </record>
-        <record model="ir.actions.act_window" id="action_piece_work_line">
+        <record model="ir.actions.act_window" id="action_piece_work_line_normal">
             <field name="name">工作计量</field>
             <field name="res_model">piece.work.line</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_piece_work_line_tree"/>
+            <field name="domain">[('type','=','normal')]</field>
+            <field name="context">{'default_type': 'normal'}</field>
             <field name="search_view_id" ref="view_piece_work_line_search"/>
         </record>
-        <menuitem name="工作计量" parent="menu_gz_piece_work_main" id="menu_gz_piece_work_line" action="action_piece_work_line" sequence="1"/>
+        <menuitem parent="menu_gz_piece_work_main" id="menu_gz_piece_work_line_normal" action="action_piece_work_line_normal" sequence="1"/>
+
+        <record model="ir.actions.act_window" id="action_piece_work_line_rework">
+            <field name="name">返工计量</field>
+            <field name="res_model">piece.work.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_piece_work_line_tree"/>
+            <field name="domain">[('type','=','rework')]</field>
+            <field name="context">{'default_type': 'rework'}</field>
+            <field name="search_view_id" ref="view_piece_work_line_search"/>
+        </record>
+        <menuitem parent="menu_gz_piece_work_main" id="menu_gz_piece_work_line_rework" action="action_piece_work_line_rework" sequence="2"/>
+
+        <record model="ir.actions.act_window" id="action_piece_work_line_scrap">
+            <field name="name">报废计量</field>
+            <field name="res_model">piece.work.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_piece_work_line_tree"/>
+            <field name="domain">[('type','=','scrap')]</field>
+            <field name="context">{'default_type': 'scrap'}</field>
+            <field name="search_view_id" ref="view_piece_work_line_search"/>
+        </record>
+        <menuitem parent="menu_gz_piece_work_main" id="menu_gz_piece_work_line_scrap" action="action_piece_work_line_scrap" sequence="3"/>
 
     </data>
 </openerp>

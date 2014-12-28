@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_wizard_piece_work_line" model="ir.ui.view">
+            <field name="name">Piece Work Line</field>
+            <field name="model">wizard.piece.work.line</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <group>
+                        <label for="date_from" string="从"/>
+                        <div>
+                           <field name="date_from" nolabel="1" class="oe_inline"/>
+                           到 <field name="date_to" nolabel="1" class="oe_inline"/>
+                        </div>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="emp_id"/>
+                        </group>
+                        <group>
+                            <field name="style_id"/>
+                            <field name="rate_id"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="retrieve_report" string="查看" type="object"  class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_wizard_piece_work_line" model="ir.actions.act_window">
+            <field name="name">所有记录</field>
+            <field name="res_model">wizard.piece.work.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_wizard_piece_work_line"/>
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem id="piece_work_report_main" name="汇总查询" sequence="15" parent="base.menu_reporting"/>
+        <menuitem id="menu_action_wizard_piece_work_line" action="action_wizard_piece_work_line" parent="piece_work_report_main" sequence="1"/>
+
+        <record id="view_piece_work_line_graph" model="ir.ui.view">
+            <field name="name">piece.work.line.graph</field>
+            <field name="model">piece.work.line</field>
+            <field name="arch" type="xml">
+                <graph string="" type="pivot">
+                    <field name="emp_id" type="row"/>
+                    <field name="type" type="row"/>
+                    <field name="style_id" type="col"/>
+                    <field name="rate_id" type="col"/>
+                    <field name="hours" type="measure"/>
+                    <field name="unit_qty" type="measure"/>
+                    <field name="wage_subtotal" type="measure"/>
+                </graph>
+            </field>
+        </record>
+    </data>
+</openerp>
+

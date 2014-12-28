@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="wkf_piece_work_line" model="workflow">
+            <field name="name">piece.work.line.basic</field>
+            <field name="osv">piece.work.line</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <!-- Activity -->
+        <record id="act_draft" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_piece_work_line"/>
+            <field name="flow_start">True</field>
+            <field name="name">draft</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state':'draft'})</field>
+        </record>
+        
+        <record id="act_confirm" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_piece_work_line"/>
+            <field name="name">confirm</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state':'confirm'})</field>
+        </record>
+
+        <!-- Transistion -->
+        <record id="trans_draft_submit" model="workflow.transition">
+            <field name="act_from" ref="act_draft"/>
+            <field name="act_to" ref="act_confirm"/>
+            <field name="signal">confirm</field>
+        </record>
+    </data>
+</openerp>
