@@ -20,7 +20,7 @@
 ##############################################################################
 
 {
-    'name': '员工管理',
+    'name': '工厂员工管理',
     'version': '0.1',
     'category': 'Human Resources',
     'description': """
@@ -35,6 +35,7 @@
         'security/hr_security.xml',
         #'security/ir.model.access.csv',
         'hr_factory_view.xml',
+        'hr_demo.xml',
     ],
     'demo': [],
     'test':[],

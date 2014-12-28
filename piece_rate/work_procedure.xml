@@ -93,5 +93,9 @@
       <field name="name">返工烫</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
     </record>
+    <record id="procedure_22" model="work.procedure">
+      <field name="name">裁皮</field>
+      <field name="categ_id" ref="prod_cat_leathercutting"/>
+    </record>
   </data>
 </openerp>

@@ -7,11 +7,6 @@
         
         <menuitem id="menu_gz_config_employee" name="员工" parent="piece_rate.menu_gz_config" sequence="2"/>
 
-        <record id="hr.open_module_tree_department" model="ir.actions.act_window">
-            <field name="help">单击创建车间信息</field>
-        </record>
-        <menuitem name="车间" action="hr.open_module_tree_department" id="menu_gz_config_employee_department_tree" parent="menu_gz_config_employee" sequence="1"/>
-
         <record id="view_employee_form" model="ir.ui.view">
             <field name="name">hr.employee.form</field>
             <field name="model">hr.employee</field>
@@ -49,12 +44,11 @@
                     <page string="岗位信息">
                         <group>
                             <group>
-                                <field name="department_id" on_change="onchange_department_id(department_id)"/>
-                                <field name="procedure"/>
+                                <field name="workshop_id" on_change="onchange_workshop_id(workshop_id)"/>
+                                <field name="workline_id"/>
                             </group>
                             <group>
-                                <field name="parent_id"/>
-                                <field name="coach_id"/>
+                                <field name="procedure_id"/>
                             </group>
                         </group>
                         <field name="notes" placeholder="Other Information ..." colspan="4"/>
@@ -105,13 +99,28 @@
                                 <a type="open"><field name="emp_id"/> <field name="name"/><t t-if="record.login.raw_value"> (<field name="login"/>)</t></a>
                             </h4>
                             <ul>
-                                <li t-if="record.department_id.raw_value">车间：<field name="department_id"/></li>
-                                <li t-if="record.procedure.raw_value">工序：<field name="procedure"/></li>
+                                <li t-if="record.workline_id.raw_value">组别：<field name="workline_id"/></li>
+                                <li t-if="record.procedure_id.raw_value">工序：<field name="procedure_id"/></li>
                             </ul>
                         </div>
                     </div>
                 </xpath>
             </field>
+        </record>
+        
+        <record id="view_employee_filter" model="ir.ui.view">
+            <field name="name">Employees</field>
+            <field name="model">hr.employee</field>
+            <field name="arch" type="xml">
+                <search string="Employees">
+                    <field name="name" string="员工" filter_domain="['|',('emp_id','ilike',self),('name','ilike',self)]"/>
+                    <filter name="group_workline_id" string="组别" icon="terp-personal+" context="{'group_by':'workline_id'}"/>
+                    <group expand="0" string="Group By">
+                        <filter string="车间" icon="terp-personal+" domain="[]" context="{'group_by':'workshop_id'}"/>
+                        <filter string="组别" icon="terp-personal+" domain="[]" context="{'group_by':'workline_id'}"/>
+                    </group>
+                </search>
+             </field>
         </record>
         
         <record id="gz_view_employee_list" model="ir.actions.act_window">
@@ -120,9 +129,9 @@
             <field name="view_type">form</field>
             <field name="view_mode">kanban,tree,form</field>
             <field name="domain">[('user_id','=',False)]</field>
-            <field name="context">{}</field>
             <field name="view_id" eval="False"/>
-            <field name="search_view_id" ref="hr.view_employee_filter"/>
+            <field name="search_view_id" ref="view_employee_filter"/>
+            <field name="context">{'search_default_group_workline_id': 1}</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 单击创建一个新员工。
@@ -134,6 +143,62 @@
         <record id="hr.menu_hr_root" model="ir.ui.menu">
             <field name="groups_id" eval="[(6,0,[ref('hr_factory.group_hidden'),])]"/>
         </record>
+        
+        <!-- hr.workshop -->
+        <record id="view_workshop_form" model="ir.ui.view">
+            <field name="name">hr.workshop.form</field>
+            <field name="model">hr.workshop</field>
+            <field name="arch" type="xml">
+                <form string="workshop">
+                    <sheet>
+                        <group col="4">
+                            <field name="name"/>
+                            <field name="manager_id"/>
+                        </group>
+                        <notebook>
+                            <page string="组别">
+                                <field name="workline_ids">
+                                    <tree string="" editable="bottom">
+                                        <field name="name"/>
+                                        <field name="manager_id"/>
+                                        <field name="note"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_workshop_tree" model="ir.ui.view">
+            <field name="name">hr.workshop.tree</field>
+            <field name="model">hr.workshop</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="manager_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_workshop_filter" model="ir.ui.view">
+            <field name="name">workshops</field>
+            <field name="model">hr.workshop</field>
+            <field name="arch" type="xml">
+                <search string="workshops">
+                    <field name="name"/>
+                    <field name="manager_id" />
+                </search>
+             </field>
+        </record>
+        <record id="open_module_tree_workshop" model="ir.actions.act_window">
+            <field name="name">车间</field>
+            <field name="res_model">hr.workshop</field>
+            <field name="view_type">form</field>
+            <field name="search_view_id" ref="view_workshop_filter"/>
+        </record>
+        <menuitem id="menu_gz_config_hr_config_main" name="员工" parent="piece_rate.menu_gz_config_config_main" sequence="2"/>
+        <menuitem action="open_module_tree_workshop" id="menu_hr_workshop_tree" parent="menu_gz_config_hr_config_main" sequence="1"/>
+        
     </data>
 </openerp>
     

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+      <record id="workshop_cutting" model="hr.workshop">
+          <field name="name">裁断</field>
+      </record>
+      <record id="workshop_sewing" model="hr.workshop">
+          <field name="name">缝制</field>
+      </record>
+      <record id="workshop_sample" model="hr.workshop">
+          <field name="name">打样</field>
+      </record>
+      
+      <record id="workline_cutting_1" model="hr.workline">
+          <field name="name">1组</field>
+          <field name="workshop_id" ref="workshop_cutting"/>
+      </record>
+      <record id="workline_cutting_2" model="hr.workline">
+          <field name="name">2组</field>
+          <field name="workshop_id" ref="workshop_cutting"/>
+      </record>
+      
+      <record id="workline_sewing_1" model="hr.workline">
+          <field name="name">1组</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+      </record>
+      <record id="workline_sewing_2" model="hr.workline">
+          <field name="name">2组</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+      </record>
+      <record id="workline_sewing_3" model="hr.workline">
+          <field name="name">3组</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+      </record>
+      <record id="workline_sewing_4" model="hr.workline">
+          <field name="name">4组</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+      </record>
+      <record id="workline_sewing_5" model="hr.workline">
+          <field name="name">5组</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+      </record>
+      <record id="workline_sewing_6" model="hr.workline">
+          <field name="name">6组</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+      </record>
+      
+      <record id="workline_sample_1" model="hr.workline">
+          <field name="name">1组</field>
+          <field name="workshop_id" ref="workshop_sample"/>
+      </record>
+      
+      <record id="employee_001" model="hr.employee">
+          <field name="emp_id">001</field>
+          <field name="name">胡芹</field>
+          <field name="workshop_id" ref="workshop_cutting"/>
+          <field name="workline_id" ref="workline_cutting_1"/>
+          <field name="procedure_id" ref="piece_rate.procedure_22"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_001.jpg"/>
+      </record>
+      <record id="employee_002" model="hr.employee">
+          <field name="emp_id">002</field>
+          <field name="name">陈冬梅</field>
+          <field name="workshop_id" ref="workshop_cutting"/>
+          <field name="workline_id" ref="workline_cutting_1"/>
+          <field name="procedure_id" ref="piece_rate.procedure_22"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_002.jpg"/>
+      </record>
+      <record id="employee_003" model="hr.employee">
+          <field name="emp_id">003</field>
+          <field name="name">倪二艳</field>
+          <field name="workshop_id" ref="workshop_cutting"/>
+          <field name="workline_id" ref="workline_cutting_2"/>
+          <field name="procedure_id" ref="piece_rate.procedure_22"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_003.jpg"/>
+      </record>
+      <record id="employee_004" model="hr.employee">
+          <field name="emp_id">004</field>
+          <field name="name">姜建琴</field>
+          <field name="workshop_id" ref="workshop_cutting"/>
+          <field name="workline_id" ref="workline_cutting_2"/>
+          <field name="procedure_id" ref="piece_rate.procedure_22"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_004.jpg"/>
+      </record>
+      
+      <record id="employee_005" model="hr.employee">
+          <field name="emp_id">005</field>
+          <field name="name">曹从霞</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_1"/>
+          <field name="procedure_id" ref="piece_rate.procedure_1"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_005.jpg"/>
+      </record>
+      <record id="employee_006" model="hr.employee">
+          <field name="emp_id">006</field>
+          <field name="name">曹智慧</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_1"/>
+          <field name="procedure_id" ref="piece_rate.procedure_2"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_006.jpg"/>
+      </record>
+      <record id="employee_007" model="hr.employee">
+          <field name="emp_id">007</field>
+          <field name="name">程聪</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_1"/>
+          <field name="procedure_id" ref="piece_rate.procedure_3"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_007.jpg"/>
+      </record>
+      <record id="employee_008" model="hr.employee">
+          <field name="emp_id">008</field>
+          <field name="name">丁红芹</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_1"/>
+          <field name="procedure_id" ref="piece_rate.procedure_4"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_008.jpg"/>
+      </record>
+      <record id="employee_009" model="hr.employee">
+          <field name="emp_id">009</field>
+          <field name="name">何云霞</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_1"/>
+          <field name="procedure_id" ref="piece_rate.procedure_5"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_009.jpg"/>
+      </record>
+      
+      <record id="employee_010" model="hr.employee">
+          <field name="emp_id">010</field>
+          <field name="name">黄丽娟</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_2"/>
+          <field name="procedure_id" ref="piece_rate.procedure_1"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_010.jpg"/>
+      </record>
+      <record id="employee_011" model="hr.employee">
+          <field name="emp_id">011</field>
+          <field name="name">刘从林</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_2"/>
+          <field name="procedure_id" ref="piece_rate.procedure_2"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_011.jpg"/>
+      </record>
+      <record id="employee_012" model="hr.employee">
+          <field name="emp_id">012</field>
+          <field name="name">刘芝利</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_2"/>
+          <field name="procedure_id" ref="piece_rate.procedure_3"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_012.jpg"/>
+      </record>
+      <record id="employee_013" model="hr.employee">
+          <field name="emp_id">013</field>
+          <field name="name">彭华丽</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_2"/>
+          <field name="procedure_id" ref="piece_rate.procedure_4"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_013.jpg"/>
+      </record>
+      <record id="employee_014" model="hr.employee">
+          <field name="emp_id">014</field>
+          <field name="name">王何勤</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_2"/>
+          <field name="procedure_id" ref="piece_rate.procedure_5"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_014.jpg"/>
+      </record>
+
+      <record id="employee_015" model="hr.employee">
+          <field name="emp_id">015</field>
+          <field name="name">席志艳</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_3"/>
+          <field name="procedure_id" ref="piece_rate.procedure_1"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_015.jpg"/>
+      </record>
+      <record id="employee_016" model="hr.employee">
+          <field name="emp_id">016</field>
+          <field name="name">夏茂兰</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_3"/>
+          <field name="procedure_id" ref="piece_rate.procedure_2"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_016.jpg"/>
+      </record>
+      <record id="employee_017" model="hr.employee">
+          <field name="emp_id">017</field>
+          <field name="name">夏梅芳</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_3"/>
+          <field name="procedure_id" ref="piece_rate.procedure_3"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_017.jpg"/>
+      </record>
+      <record id="employee_018" model="hr.employee">
+          <field name="emp_id">018</field>
+          <field name="name">杨井芳</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_3"/>
+          <field name="procedure_id" ref="piece_rate.procedure_4"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_018.jpg"/>
+      </record>
+      <record id="employee_019" model="hr.employee">
+          <field name="emp_id">019</field>
+          <field name="name">张兰兰</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_3"/>
+          <field name="procedure_id" ref="piece_rate.procedure_5"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_019.jpg"/>
+      </record>
+
+      <record id="employee_020" model="hr.employee">
+          <field name="emp_id">020</field>
+          <field name="name">王丹丹</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_4"/>
+          <field name="procedure_id" ref="piece_rate.procedure_1"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_020.jpg"/>
+      </record>
+      <record id="employee_021" model="hr.employee">
+          <field name="emp_id">021</field>
+          <field name="name">庄芹</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_4"/>
+          <field name="procedure_id" ref="piece_rate.procedure_2"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_021.jpg"/>
+      </record>
+      <record id="employee_022" model="hr.employee">
+          <field name="emp_id">022</field>
+          <field name="name">曹同平</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_4"/>
+          <field name="procedure_id" ref="piece_rate.procedure_3"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_022.jpg"/>
+      </record>
+      <record id="employee_023" model="hr.employee">
+          <field name="emp_id">023</field>
+          <field name="name">常海英</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_4"/>
+          <field name="procedure_id" ref="piece_rate.procedure_4"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_023.jpg"/>
+      </record>
+      <record id="employee_024" model="hr.employee">
+          <field name="emp_id">024</field>
+          <field name="name">陈立芹</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_4"/>
+          <field name="procedure_id" ref="piece_rate.procedure_5"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_024.jpg"/>
+      </record>
+
+      <record id="employee_025" model="hr.employee">
+          <field name="emp_id">025</field>
+          <field name="name">陈梅</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_5"/>
+          <field name="procedure_id" ref="piece_rate.procedure_1"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_025.jpg"/>
+      </record>
+      <record id="employee_026" model="hr.employee">
+          <field name="emp_id">026</field>
+          <field name="name">戴燕</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_5"/>
+          <field name="procedure_id" ref="piece_rate.procedure_2"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_026.jpg"/>
+      </record>
+      <record id="employee_027" model="hr.employee">
+          <field name="emp_id">027</field>
+          <field name="name">姜红云</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_5"/>
+          <field name="procedure_id" ref="piece_rate.procedure_3"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_027.jpg"/>
+      </record>
+      <record id="employee_028" model="hr.employee">
+          <field name="emp_id">028</field>
+          <field name="name">李红娟</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_5"/>
+          <field name="procedure_id" ref="piece_rate.procedure_4"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_028.jpg"/>
+      </record>
+      <record id="employee_029" model="hr.employee">
+          <field name="emp_id">029</field>
+          <field name="name">李茂娟</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_5"/>
+          <field name="procedure_id" ref="piece_rate.procedure_5"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_029.jpg"/>
+      </record>
+
+      <record id="employee_030" model="hr.employee">
+          <field name="emp_id">030</field>
+          <field name="name">梁明</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_6"/>
+          <field name="procedure_id" ref="piece_rate.procedure_1"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_030.jpg"/>
+      </record>
+      <record id="employee_031" model="hr.employee">
+          <field name="emp_id">031</field>
+          <field name="name">刘素芳</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_6"/>
+          <field name="procedure_id" ref="piece_rate.procedure_2"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_031.jpg"/>
+      </record>
+      <record id="employee_032" model="hr.employee">
+          <field name="emp_id">032</field>
+          <field name="name">王二花</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_6"/>
+          <field name="procedure_id" ref="piece_rate.procedure_3"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_032.jpg"/>
+      </record>
+      <record id="employee_033" model="hr.employee">
+          <field name="emp_id">033</field>
+          <field name="name">王倩</field>
+          <field name="workshop_id" ref="workshop_sewing"/>
+          <field name="workline_id" ref="workline_sewing_6"/>
+          <field name="procedure_id" ref="piece_rate.procedure_4"/>
+          <field name="image" type="base64" file="hr_factory/static/img/hr_emp_033.jpg"/>
+      </record>
+    </data>
+</openerp>
