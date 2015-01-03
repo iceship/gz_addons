@@ -4,98 +4,120 @@
     <record id="procedure_1" model="work.procedure">
       <field name="name">包边</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
+      <field name="image" type="base64" file="piece_rate/static/img/baobian.png"/>
     </record>
     <record id="procedure_2" model="work.procedure">
       <field name="name">订小盼</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
+      <field name="image" type="base64" file="piece_rate/static/img/dingxiaopan.png"/>
     </record>
     <record id="procedure_3" model="work.procedure">
       <field name="name">订硬刺</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
+      <field name="image" type="base64" file="piece_rate/static/img/dingyingci.png"/>
     </record>
     <record id="procedure_4" model="work.procedure">
       <field name="name">订指头标</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
+      <field name="image" type="base64" file="piece_rate/static/img/dingzhitoubiao.png"/>
     </record>
     <record id="procedure_5" model="work.procedure">
       <field name="name">合拇指+订洗标+吊牌扣</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
+      <field name="image" type="base64" file="piece_rate/static/img/hemuzhi.png"/>
     </record>
     <record id="procedure_6" model="work.procedure">
       <field name="name">接叉条</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
+      <field name="image" type="base64" file="piece_rate/static/img/jiechatiao.png"/>
     </record>
     <record id="procedure_7" model="work.procedure">
       <field name="name">上运</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
+      <field name="image" type="base64" file="piece_rate/static/img/shangyun.png"/>
     </record>
     <record id="procedure_8" model="work.procedure">
       <field name="name">食指合缝+拼拇指</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
+      <field name="image" type="base64" file="piece_rate/static/img/shizhihefeng.png"/>
     </record>
     <record id="procedure_9" model="work.procedure">
       <field name="name">手背指甲</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
+      <field name="image" type="base64" file="piece_rate/static/img/shoubeizhijia.png"/>
     </record>
     <record id="procedure_10" model="work.procedure">
       <field name="name">手心指甲</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
+      <field name="image" type="base64" file="piece_rate/static/img/shouxinzhijia.png"/>
     </record>
     <record id="procedure_11" model="work.procedure">
       <field name="name">手丫托</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
+      <field name="image" type="base64" file="piece_rate/static/img/shouyatuo.png"/>
     </record>
     <record id="procedure_12" model="work.procedure">
       <field name="name">手心贴块</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
+      <field name="image" type="base64" file="piece_rate/static/img/shouxintiekuai.png"/>
     </record>
     <record id="procedure_13" model="work.procedure">
       <field name="name">手心托</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
+      <field name="image" type="base64" file="piece_rate/static/img/shouxintuo.png"/>
     </record>
     <record id="procedure_14" model="work.procedure">
       <field name="name">检验</field>
       <field name="categ_id" ref="prod_cat_inspect"/>
+      <field name="image" type="base64" file="piece_rate/static/img/jianyan.png"/>
     </record>
     <record id="procedure_15" model="work.procedure">
       <field name="name">翻剪</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
+      <field name="image" type="base64" file="piece_rate/static/img/fanjian.png"/>
     </record>
     <record id="procedure_16" model="work.procedure">
       <field name="name">烫</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
+      <field name="image" type="base64" file="piece_rate/static/img/tang.png"/>
     </record>
     <record id="procedure_17" model="work.procedure">
       <field name="name">打吊牌</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
       <field name="uom_id" ref="product_uom_box"/>
       <field name="uom_po_id" ref="product_uom_box"/>
+      <field name="image" type="base64" file="piece_rate/static/img/dadiaopai.png"/>
     </record>
     <record id="procedure_18" model="work.procedure">
       <field name="name">挂防盗器</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
       <field name="uom_id" ref="product_uom_box"/>
       <field name="uom_po_id" ref="product_uom_box"/>
+      <field name="image" type="base64" file="piece_rate/static/img/guafangdaoqi.png"/>
     </record>
     <record id="procedure_19" model="work.procedure">
       <field name="name">折小盒</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
       <field name="uom_id" ref="product_uom_box"/>
       <field name="uom_po_id" ref="product_uom_box"/>
+      <field name="image" type="base64" file="piece_rate/static/img/zhexiaohe.png"/>
     </record>
     <record id="procedure_20" model="work.procedure">
       <field name="name">挂手套+封箱子</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
       <field name="uom_id" ref="product_uom_box"/>
       <field name="uom_po_id" ref="product_uom_box"/>
+      <field name="image" type="base64" file="piece_rate/static/img/guashoutao.png"/>
     </record>
     <record id="procedure_21" model="work.procedure">
       <field name="name">返工烫</field>
       <field name="categ_id" ref="prod_cat_sewing"/>
+      <field name="image" type="base64" file="piece_rate/static/img/fangongtang.png"/>
     </record>
     <record id="procedure_22" model="work.procedure">
       <field name="name">裁皮</field>
       <field name="categ_id" ref="prod_cat_leathercutting"/>
+      <field name="image" type="base64" file="piece_rate/static/img/caipi.png"/>
     </record>
   </data>
 </openerp>

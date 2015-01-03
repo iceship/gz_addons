@@ -30,7 +30,7 @@
 """,
     'author': 'Wang Yue Ming',
     'website': 'http://openerp.com',
-    'depends': ['product'],
+    'depends': ['point_of_sale'],
     'data': [
         #'security/sale_security.xml',
         #'security/ir.model.access.csv',
