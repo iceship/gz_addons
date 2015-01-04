@@ -30,7 +30,7 @@
 """,
     'author': 'Wang Yue Ming',
     'website': 'http://openerp.com',
-    'depends': ['piece_rate', 'hr_factory'],
+    'depends': ['point_of_sale'],
     'data': [
         'views/pos_piece_work.xml',
     ],

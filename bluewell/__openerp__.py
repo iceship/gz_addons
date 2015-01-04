@@ -31,7 +31,7 @@
 """,
     'author': 'Wang Yue Ming',
     'website': 'http://openerp.com',
-    'depends': ['l10n_cn','piece_work'],
+    'depends': ['l10n_cn'],
     'data': [
         'companies.xml',
     ],

@@ -111,6 +111,7 @@ class hr_employee(osv.osv):
         'procedure_id': fields.many2one('work.procedure', u'默认工序', required=True, select=True),
         'entry_day': fields.date(u'入职日期'),
         'quit_day': fields.date(u'离职日期'),
+        'partner_id': fields.many2one('res.partner', 'Customer in POS', ondelete="cascade", select=True),
     }
     _sql_constraints = [
         ('emp_id', 'unique(emp_id)', u'工号不能重复'),
@@ -131,3 +132,37 @@ class hr_employee(osv.osv):
     _constraints = [
         (_check_emp_id, u'工号必须是数字', ['emp_id']),
     ]
+    
+    def create(self, cr, uid, vals, context=None):
+        new_id = super(hr_employee, self).create(cr, uid, vals, context=context)
+        
+        rec = self.browse(cr, uid, new_id)
+        partner_id = self.pool.get('res.partner').create(cr, uid, {
+                'name': rec.emp_id + ' ' + rec.name,
+                'image': rec.image,
+            })
+        self.write(cr, uid, [new_id], {
+                'partner_id': partner_id,
+            }, context=context)
+        
+        return new_id
+        
+    def write(self, cr, uid, ids, vals, context=None):
+        res = super(hr_employee, self).write(cr, uid, ids, vals, context=context)
+        
+        if 'emp_id' in vals or 'name' in vals or 'image' in vals:
+            partner_pool = self.pool.get('res.partner')
+            for id in ids:
+                rec = self.browse(cr, uid, id)
+                if rec.partner_id:
+                    partner_pool.write(cr, uid, [rec.partner_id.id], {
+                        'name': rec.emp_id + ' ' + rec.name,
+                        'image': rec.image,
+                    }, context=context)
+        return res
+        
+    def unlink(self, cr, uid, ids, context=None):
+        unlink_partner_ids = [employee.partner_id.id for employee in self.browse(cr, uid, ids, context=context) if employee.partner_id]
+        res = super(hr_employee, self).unlink(cr, uid, ids, context=context)
+        self.pool.get('res.partner').unlink(cr, uid, unlink_partner_ids, context=context)
+        return res
