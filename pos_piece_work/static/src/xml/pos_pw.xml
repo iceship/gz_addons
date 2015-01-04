@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdl=1:
+-->
+<templates id="template" xml:space="preserve">
+    <t t-extend="Product">
+        <t t-jquery=".price-tag" t-operation="replace">
+        </t>
+    </t>
+    
+    <t t-extend="OrderWidget">
+        <t t-jquery=".summary.clearfix" t-operation="replace">
+            <div class="summary clearfix oe_hidden">
+                <div t-attf-class="line #{orderlines.length === 0 ? 'empty' : ''}">
+                    <div class='entry total'>
+                        <span class="label">Total: </span> <span class="value">0.00 €</span>
+                        <div class='subentry'>Taxes: <span class="value">0.00€</span></div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+    
+    <t t-extend="Orderline">
+        <t t-jquery=".price" t-operation="replace">
+            <t t-esc="line.get_quantity_str_with_unit()"/>
+        </t>
+        
+        <t t-jquery=".info-list" t-operation="replace">
+        </t>
+    </t>
+    
+    <t t-extend="NumpadWidget">
+        <t t-jquery=".mode-button[data-mode='quantity']" t-operation="replace">
+            <button class="mode-button-hide" data-mode='quantity'></button>
+        </t>
+        <t t-jquery=".mode-button[data-mode='discount']" t-operation="replace">
+            <button class="mode-button-hide" data-mode='discount'></button>
+        </t>
+        <t t-jquery=".mode-button[data-mode='price']" t-operation="replace">
+            <button class="mode-button-hide" data-mode='price'></button>
+        </t>
+    </t>
+    
+    <t t-extend="ProductCategoriesWidget">
+        <t t-jquery="[placeholder='Search Products']" t-operation="replace">
+            <input placeholder="搜索工序"/>
+        </t>
+    </t>
+    
+</templates>

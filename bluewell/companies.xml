@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <record id="base.main_company" model="res.company">
+      <field name="name">淮安布罗韦尔手套有限公司</field>
+      <field name="currency_id" ref="base.CNY"/>
+      <field name="street">2, Guangling Rd, Lianshui economic and development zone, Jiangsu</field>
+      <field name="zip">223400</field>
+      <field name="city">涟水</field>
+      <field name="country_id" ref="base.cn"/>
+      <field name="state_id" ref="l10n_cn.state_JS"/>
+      <field name="email">info@bluewellglove.com</field>
+      <field name="phone">0086-517-82392708</field>
+      <field name="fax">0086-517-82387930</field>
+      <field name="logo" type="base64" file="bluewell/static/img/logo.jpg"/>
+      <field name="paper_format">a4</field>
+      <field name="website">www.bluewellglove.com</field>
+    </record>
+  </data>
+</openerp>
