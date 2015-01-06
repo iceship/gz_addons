@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="account.sit" model="account.analytic.journal">
+            <field name="code">START</field>
+            <field name="name">Miscellaneous Operation</field>
+            <field name="type">situation</field>
+        </record>
+
+        <record id="account.chart0" model="account.account">
+            <field name="code">X0</field>
+            <field name="name">Chart For Automated Tests</field>
+            <field name="type">view</field>
+            <field name="user_type" ref="account.data_account_type_view"/>
+        </record>
+
+        <record id="account.bal" model="account.account">
+            <field name="code">X1</field>
+            <field name="name">Balance Sheet - (test)</field>
+            <field ref="account.chart0" name="parent_id"/>
+            <field name="type">view</field>
+            <field name="user_type" ref="account.data_account_type_view"/>
+        </record>
+        
+        <record model="account.account" id="account.liabilities_view">
+            <field name="name">Liabilities - (test)</field>
+            <field name="code">X11</field>
+            <field name="type">view</field>
+            <field name="user_type" ref="account.data_account_type_liability"/>
+            <field name="reconcile" eval="False"/>
+            <field name="parent_id" ref="account.bal"/>
+        </record>
+
+        <record id="account.cli" model="account.account">
+            <field name="code">X110</field>
+            <field name="name">Current Liabilities - (test)</field>
+            <field ref="account.liabilities_view" name="parent_id"/>
+            <field name="type">view</field>
+            <field name="user_type" ref="account.data_account_type_liability"/>
+        </record>
+
+        <record id="account.rsa" model="account.account">
+            <field name="code">X1113</field>
+            <field name="name">Reserve and Profit/Loss - (test)</field>
+            <field ref="account.cli" name="parent_id"/>
+            <field name="type">other</field>
+            <field name="user_type" ref="account.data_account_type_liability"/>
+        </record>
+
+        <record model="account.account" id="account.assets_view">
+            <field name="name">Assets - (test)</field>
+            <field name="code">X10</field>
+            <field name="type">view</field>
+            <field name="user_type" ref="account.data_account_type_asset"/>
+            <field name="reconcile" eval="False"/>
+            <field name="parent_id" ref="account.bal"/>
+        </record>
+        
+        <record id="account.nca" model="account.account">
+            <field name="code">X101</field>
+            <field name="name">Net Current Assets - (test)</field>
+            <field ref="account.assets_view" name="parent_id"/>
+            <field name="type">view</field>
+            <field name="user_type" ref="account.data_account_type_asset"/>
+        </record>
+
+        <record id="account.cas" model="account.account">
+            <field name="code">X1100</field>
+            <field name="name">Current Assets - (test)</field>
+            <field ref="account.nca" name="parent_id"/>
+            <field name="type">view</field>
+            <field name="user_type" ref="account.data_account_type_asset"/>
+        </record>
+
+        <record id="account.bnk" model="account.account">
+            <field name="code">X11004</field>
+            <field name="name">Bank Current Account - (test)</field>
+            <field ref="account.cas" name="parent_id"/>
+            <field name="type">liquidity</field>
+            <field name="user_type" ref="account.data_account_type_asset"/>
+        </record>
+
+        <record id="account.cash" model="account.account">
+            <field name="code">X11005</field>
+            <field name="name">Cash - (test)</field>
+            <field ref="account.cas" name="parent_id"/>
+            <field name="type">liquidity</field>
+            <field name="user_type" ref="account.data_account_type_asset"/>
+        </record>
+        
+        <record id="account.bank_journal" model="account.journal">
+            <field name="name">Bank Journal - (test)</field>
+            <field name="code">TBNK</field>
+            <field name="type">bank</field>
+            <field name="sequence_id" ref="account.sequence_bank_journal"/>
+            <field name="default_debit_account_id" ref="account.bnk"/>
+            <field name="default_credit_account_id" ref="account.bnk"/>
+            <field name="analytic_journal_id" ref="account.sit"/>
+            <field name="user_id" ref="base.user_root"/>
+        </record>
+        <record id="account.check_journal" model="account.journal">
+            <field name="name">Checks Journal - (test)</field>
+            <field name="code">TCHK</field>
+            <field name="type">bank</field>
+            <field name="sequence_id" ref="account.sequence_check_journal"/>
+            <field name="default_debit_account_id" ref="account.cash"/>
+            <field name="default_credit_account_id" ref="account.cash"/>
+            <field name="analytic_journal_id" ref="account.sit"/>
+            <field name="user_id" ref="base.user_root"/>
+        </record>
+        <record id="account.cash_journal" model="account.journal">
+            <field name="name">Cash Journal - (test)</field>
+            <field name="code">TCSH</field>
+            <field name="type">cash</field>
+            <field name="profit_account_id" ref="account.rsa" />
+            <field name="loss_account_id" ref="account.rsa" />
+            <field name="internal_account_id" ref="account.rsa" />
+            <field name="with_last_closing_balance" eval="True" />
+            <!--
+                 Usually, cash payment methods requires a control at opening and closing.
+                 Bot for demo data, it's better to avoid the control step so that people
+                 that test Odoo arrive directly in the touchscreen UI.
+            -->
+            <field name="cash_control" eval="False"/>
+            <field name="sequence_id" ref="account.sequence_cash_journal"/>
+            <field name="default_debit_account_id" ref="account.cash"/>
+            <field name="default_credit_account_id" ref="account.cash"/>
+            <field name="analytic_journal_id" ref="account.sit"/>
+            <field name="user_id" ref="base.user_root"/>
+        </record>
+        <record id="account.cash_journal" model="account.journal">
+            <field eval="True" name="journal_user"/>
+        </record>
+        <record id="base.user_root" model="res.users">
+            <field name="groups_id" eval="[(4,ref('point_of_sale.group_pos_manager'))]"/>
+        </record>
+
+        <record model="pos.config" id="point_of_sale.pos_config_main">
+            <field name="journal_ids" eval="[(6, 0, [ref('account.cash_journal'), ref('account.bank_journal'), ref('account.check_journal')])]" />
+        </record>
+
+    </data>
+</openerp>

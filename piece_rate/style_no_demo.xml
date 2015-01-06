@@ -1,0 +1,236 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="style_no_1" model="style.no">
+            <field name="name">407</field>
+            <field name="image" type="base64" file="piece_rate/static/img/style_no1.jpg"/>
+        </record>
+
+        <record id="style_no_2" model="style.no">
+            <field name="name">2091</field>
+            <field name="image" type="base64" file="piece_rate/static/img/style_no2.jpg"/>
+        </record>
+        
+        <record id="style_no_1_procedure_1" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_1"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_2" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_2"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_3" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_3"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_4" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_4"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_5" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_5"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_6" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_6"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_7" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_7"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_8" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_8"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_9" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_9"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_10" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_10"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_11" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_11"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_12" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_12"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_13" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_13"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_14" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_14"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_15" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_15"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_16" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_16"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_17" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_17"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_18" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_18"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_19" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_19"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_20" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_20"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_21" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_21"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_1_procedure_22" model="piece.rate">
+            <field name="style_id" ref="style_no_1"/>
+            <field name="procedure_id" ref="procedure_22"/>
+            <field name="rate">1.5</field>
+        </record>
+
+        <record id="style_no_2_procedure_1" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_1"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_2" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_2"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_3" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_3"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_4" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_4"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_5" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_5"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_6" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_6"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_7" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_7"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_8" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_8"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_9" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_9"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_10" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_10"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_11" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_11"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_12" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_12"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_13" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_13"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_14" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_14"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_15" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_15"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_16" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_16"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_17" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_17"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_18" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_18"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_19" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_19"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_20" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_20"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_21" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_21"/>
+            <field name="rate">1.5</field>
+        </record>
+        <record id="style_no_2_procedure_22" model="piece.rate">
+            <field name="style_id" ref="style_no_2"/>
+            <field name="procedure_id" ref="procedure_22"/>
+            <field name="rate">1.5</field>
+        </record>
+    </data>
+</openerp>

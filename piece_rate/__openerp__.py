@@ -36,6 +36,7 @@
         #'security/ir.model.access.csv',
         'prod_categs.xml',
         'work_procedure.xml',
+        'style_no_demo.xml',
         'piece_rate_view.xml',
     ],
     'demo': [],

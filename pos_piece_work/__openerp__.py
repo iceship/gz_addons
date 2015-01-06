@@ -33,6 +33,8 @@
     'depends': ['point_of_sale'],
     'data': [
         'views/pos_piece_work.xml',
+        'point_of_sale_demo.xml',
+        'account_statement_demo.xml',
     ],
     'qweb': [
         'static/src/xml/pos_pw.xml',
