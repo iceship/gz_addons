@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+        <record id="base.menu_base_partner" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0,[ref('hr_factory.group_hidden'),])]"/>
+        </record>
+        <record id="point_of_sale.menu_point_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0,[ref('hr_factory.group_hidden'),])]"/>
+        </record>
+        <record id="account.menu_finance" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0,[ref('hr_factory.group_hidden'),])]"/>
+        </record>
+        <record id="stock.menu_stock_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0,[ref('hr_factory.group_hidden'),])]"/>
+        </record>
+        
         <template id="assets_backend" name="piece_work pos assets" inherit_id="point_of_sale.assets_backend">
             <xpath expr="." position="inside">
 				<script type="text/javascript" src="/pos_piece_work/static/src/js/pos_pw.js"></script>
